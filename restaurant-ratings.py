@@ -33,6 +33,17 @@ def add_restaurant():
 
 make_restaurant_dict('scores.txt')
 
-add_restaurant()
+prompt = " \
+        1 to see restaunt ratings \n \
+        2 to add a restaurant \n \
+        3 to quit \n"
 
-sort_restaurants()
+user_choice = raw_input(prompt)
+
+if user_choice == "1":
+    sort_restaurants()
+elif user_choice == "2":
+    add_restaurant()
+    sort_restaurants()
+else:
+    pass
