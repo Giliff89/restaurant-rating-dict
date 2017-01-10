@@ -2,11 +2,37 @@ text_file = open('scores.txt')
 
 restaurant_ratings = {}
 
-for restaurant_pair in text_file:
-    rating_pair = restaurant_pair.rstrip().split(':')
-    restaurant_ratings[rating_pair[0]] = rating_pair[1]
 
-sorted_ratings = sorted(restaurant_ratings.items())
+def make_restaurant_dict(file_name):
+    """ update dictionary with restaurant, score from file_name"""
 
-for restaurant, rating in sorted_ratings:
-    print "%s is rated at %s." % (restaurant, rating)
+    for line in text_file:
+        name, score = line.rstrip().split(':')
+        restaurant_ratings[name] = int(score)
+
+
+def sort_restaurants():
+    """Sorts and prints restaurant ratings dictionary"""
+
+    sorted_ratings = sorted(restaurant_ratings.items())
+
+    for restaurant, rating in sorted_ratings:
+        print "%s is rated at %d." % (restaurant, rating)
+
+
+def add_restaurant():
+    """add user input restaurant and score to dictionary"""
+
+    restaurant_name = raw_input("Enter restaurant name: ")
+    restaurant_score = int(raw_input("Enter score: "))
+
+    restaurant_ratings[restaurant_name] = restaurant_score
+
+
+#main
+
+make_restaurant_dict('scores.txt')
+
+add_restaurant()
+
+sort_restaurants()
